@@ -59,12 +59,15 @@ Embarked_s = st.selectbox('Embarked_S', [0, 1])
 
 input_data = [Pclass, Age, SibSp, Parch, Fare, male, female, Embarked_c, Embarked_q, Embarked_s]
 model = pickle.load(open('survival_prediction (1).pkl','rb'))
-# Prediction
-if st.button('Risk Prediction'):
+def survival_prediction(input_data):
     prediction=model.predict(np.asarray(input_data).reshape(1,-1))
     print(prediction)
+    if prediction[0] == 0:
+        return 'The person did not survive'
+    else:
+        return 'The person survived'
     
-if prediction ==1:
-    print("the person survived")
-else:
-    print("the person did not survive")
+# Prediction
+if st.button('Risk Prediction'):
+    survival_prediction(input_data)
+
