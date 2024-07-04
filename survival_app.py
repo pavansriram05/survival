@@ -66,6 +66,6 @@ if st.button('Risk Prediction'):
 print(prediction)
     
 if prediction ==1:
-        print("the person survived")
-    else:
-        print("the person did not survive")
+    print("the person survived")
+else:
+    print("the person did not survive")
