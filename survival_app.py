@@ -58,7 +58,7 @@ Embarked_q = st.selectbox('Embarked_Q', [0, 1])
 Embarked_s = st.selectbox('Embarked_S', [0, 1])
 
 input_data = [Pclass, Age, SibSp, Parch, Fare, male, female, Embarked_c, Embarked_q, Embarked_s]
-loaded_model = pickle.load(open('survival_prediction(1).pkl','rb'))
+model = pickle.load(open('survival_prediction(1).pkl','rb'))
 # Prediction
 if st.button('Risk Prediction'):
     prediction=model.predict(np.asarray(input_data).reshape(1,-1))
