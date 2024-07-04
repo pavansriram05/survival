@@ -14,33 +14,6 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-### Load the saved model
-##try:
-##    with open('survival_prediction(1).pkl', 'rb') as file:
-##        loaded_model = pickle.load(file)
-##except FileNotFoundError:
-##    st.error("Model file not found. Ensure 'survival_prediction(1).pkl' is in the same directory.")
-##
-##def survival_prediction(input_data):
-##    input_data_as_np_array = np.asarray(input_data)
-##    input_data_reshaped = input_data_as_np_array.reshape(1, -1)
-##
-##    try:
-##        prediction = loaded_model.predict(input_data_reshaped)
-##        pred_proba = loaded_model.predict_proba(input_data_reshaped)
-##    except Exception as e:
-##        st.error(f"Prediction error: {e}")
-##        return None, None
-##
-##    risk = pred_proba[:, 1]
-##    risk_percent = round(risk[0] * 100, 2)
-##
-##    if prediction[0] == 0:
-##        return 'The person did not survive', risk_percent
-##    else:
-##        return 'The person survived', risk_percent
-
-
 # User Interface
 st.set_page_config(page_title="Titanic Survival Prediction", page_icon=':ship:', layout='centered')
 st.title('Survival Risk Prediction')
@@ -58,16 +31,16 @@ Embarked_q = st.selectbox('Embarked_Q', [0, 1])
 Embarked_s = st.selectbox('Embarked_S', [0, 1])
 
 input_data = [Pclass, Age, SibSp, Parch, Fare, male, female, Embarked_c, Embarked_q, Embarked_s]
-model = pickle.load(open('survival_prediction (1).pkl','rb'))
+model = pickle.load(open('survival_prediction (1).pkl', 'rb'))
+
 def survival_prediction(input_data):
-    prediction=model.predict(np.asarray(input_data).reshape(1,-1))
-    print(prediction)
+    prediction = model.predict(np.asarray(input_data).reshape(1, -1))
     if prediction[0] == 0:
         return 'The person did not survive'
     else:
         return 'The person survived'
-    
+
 # Prediction
 if st.button('Risk Prediction'):
-    survival_prediction(input_data)
-
+    result = survival_prediction(input_data)
+    st.write(result)
