@@ -62,8 +62,10 @@ model = pickle.load(open('survival_prediction (1).pkl','rb'))
 # Prediction
 if st.button('Risk Prediction'):
     prediction=model.predict(np.asarray(input_data).reshape(1,-1))
-    print(prediction)
-    if prediction ==1:
+
+print(prediction)
+    
+if prediction ==1:
         print("the person survived")
     else:
         print("the person did not survive")
