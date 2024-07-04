@@ -16,10 +16,10 @@ warnings.filterwarnings("ignore")
 
 # Load the saved model
 try:
-    with open('survival_prediction.pkl', 'rb') as file:
+    with open('survival_prediction(1).pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 except FileNotFoundError:
-    st.error("Model file not found. Ensure 'survival_pred.sav' is in the same directory.")
+    st.error("Model file not found. Ensure 'survival_prediction(1).pkl' is in the same directory.")
 
 def survival_prediction(input_data):
     input_data_as_np_array = np.asarray(input_data)
